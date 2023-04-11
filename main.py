@@ -11,9 +11,13 @@ target_words = open_file.read().splitlines()
 #     print(target_words)
 
 # Get single word from list of target_words
+greeting = "Welcome to WORDLE. You have 6 attempts to correctly guess the 5 letter word. Good Luck!"
+print(greeting)
 word_to_find = random.choice(target_words)
 print(word_to_find)
 
+# Count attempts
+attempts = 0
 
 while True:
     user_word = input("Enter a 5 letter word: ")
@@ -25,6 +29,7 @@ while True:
     if user_word not in target_words:
         print("That's not a real, word try again")
         continue
+
     # FIRST ALGORITHM
     for position in range(len(word_to_find)):
         if user_word[position] == word_to_find[position]:
@@ -34,11 +39,19 @@ while True:
             if user_word[position] is not word_to_find[position]:
                 result[position] = "-"
 
+    attempts = attempts + 1
     if word_to_find == user_word:
         print("Nice! you guessed the word. It was:", word_to_find.upper())
         restart_game = input("Want to play again? Type 'Y' to play again or 'N' to quit: ")
-        if restart_game == "Y":
+        if restart_game.upper() == "Y":
             continue
-        elif restart_game == "N":
+        elif restart_game.upper() == "N":
+            break
+    elif attempts == 6:
+        print("You ran out of guesses, the word was:", word_to_find.upper())
+        restart_game = input("Want to play again? Type 'Y' to play again or 'N' to quit: ")
+        if restart_game.upper() == "Y":
+            continue
+        elif restart_game.upper() == "N":
             break
     print(result)
