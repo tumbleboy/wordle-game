@@ -87,11 +87,11 @@ def play_game():
         score_guess(user_word, target_word, result)
 
         # Checks if user has run out of attempts or the word has been guessed.
-        if attempts == 0:
-            print("You lose. The word was", "".join(target_word).upper())
-            break
-        elif target_word == user_word:
+        if target_word == user_word:
             print("Congrats you guessed the word! it was", "".join(target_word).upper())
+            break
+        elif attempts == 0:
+            print("You lose. The word was", "".join(target_word).upper())
             break
 
         # Print score at the end of each guess.
