@@ -41,7 +41,7 @@ def get_user_word():
             display_help_message()
             continue
         elif user_word == "/quit":
-            break
+            return user_word
 
         # Non existent words
         elif user_word not in target_words:
@@ -70,7 +70,7 @@ def score_guess(user_word, target_word, result):
 # Function that runs the sequence of instructions
 def play_game():
     display_greeting()
-    attempts = 6
+    attempts = 5
     target_word = get_target_word()
     print(target_word)
 
@@ -80,6 +80,8 @@ def play_game():
 
         # Get input from user
         user_word = get_user_word()
+        if user_word == "/quit":
+            break
 
         # Scoring algorthm takes place here
         score_guess(user_word, target_word, result)
