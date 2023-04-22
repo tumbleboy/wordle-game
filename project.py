@@ -65,7 +65,7 @@ def score_guess(user_word, target_word, result):
         elif user_word[position] in target_word:
             result[position] = Back.YELLOW + user_word[position].upper() + Back.RESET
         # If the letter is not in the word.
-        elif user_word[position] is not target_word[position]:
+        elif user_word[position] not in target_word:
             result[position] = Back.LIGHTBLACK_EX + user_word[position].upper() + Back.RESET
 
 
