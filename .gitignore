@@ -1,2 +1,6 @@
 .idea
-.__pycache__
+__pycache__
+advanced_template_guess_my_word.py
+all_words.txt
+main.py
+simple_python_template.py
