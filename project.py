@@ -32,7 +32,7 @@ def display_help_message():
 # Get input from user
 def get_user_word():
     while True:
-        user_word = input("What is the 5 letter word?: ")
+        user_word = input("What is the 5 letter word?: ").lower()
 
         # Helpful commands
         if user_word == "/help":
@@ -56,7 +56,6 @@ def get_user_word():
 
 # Scoring algorithm
 def score_guess(user_word, target_word, result):
-    # Score guess
     for position in range(len(user_word)):
         # If the letter is in the correct place
         if user_word[position] == target_word[position]:
@@ -87,17 +86,36 @@ def play_game():
             break
         elif user_word == "/giveup":
             print("You lose. The word was", Back.LIGHTBLACK_EX + "".join(target_word).upper()), Back.RESET
-            break
+            play_again = input("Would you like to play again?: ").upper()
+            if play_again == "YES":
+                attempts = 5
+                target_word = get_target_word()
+                continue
+            else:
+                break
+
         # Scoring algorthm takes place here
         score_guess(user_word, target_word, result)
 
-        # Checks if user has run out of attempts or the word has been guessed.
+        # Checks if user has guessed the word or run out of attempts.
         if target_word == user_word:
             print("Congrats you guessed the word! it was", Back.GREEN + "".join(target_word).upper()), Back.RESET
-            break
+            play_again = input("Would you like to play again?: ").upper()
+            if play_again == "YES":
+                target_word = get_target_word()
+                attempts = 5
+                continue
+            else:
+                break
         elif attempts == 0:
             print("You lose. The word was", Back.LIGHTBLACK_EX + "".join(target_word).upper()), Back.RESET
-            break
+            play_again = input("Would you like to play again?: ").upper()
+            if play_again == "YES":
+                target_word = get_target_word()
+                attempts = 5
+                continue
+            else:
+                break
 
         # Print score at the end of each guess.
         print("".join(result))
