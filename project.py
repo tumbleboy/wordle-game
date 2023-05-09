@@ -55,7 +55,7 @@ def get_user_word():
 
 
 # Scoring algorithm
-def score_guess(user_word, target_word, result):
+def score_guess(user_word, target_word, result,):
     for position in range(len(user_word)):
         # If the letter is in the correct place
         if user_word[position] == target_word[position]:
@@ -74,12 +74,11 @@ def play_game():
     attempts = 5
     target_word = get_target_word()
     # Uncomment this line to show answer
-    # print(target_word)
+    print(target_word)
 
     # Beginning of gameplay loop.
     while True:
         result = ["_"]*5
-
         # Get input from user
         user_word = get_user_word()
         if user_word == "/quit":
@@ -95,7 +94,7 @@ def play_game():
                 break
 
         # Scoring algorthm takes place here
-        score_guess(user_word, target_word, result)
+        score_guess(user_word, target_word, result,)
 
         # Checks if user has guessed the word or run out of attempts.
         if target_word == user_word:
