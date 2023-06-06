@@ -32,12 +32,17 @@
 ```
 ### Score Guess Algorithm
 ```mermaid
+
 flowchart LR
-    A[[Score Guess]] --> B["for letter in range(len(user_word))"]
-    B --> C{"is user_word[letter] == target_word[letter]?"}
-    C --> |YES| D["result[letter] = user_word[letter]"]
-    C --> |NO| E{"is user_word[letter] <br/> in target_word?"}
-    E --> |YES| F["result[letter] = '-'"]
-    E --> |NO| G[continue]
+    Start --> A
+    A[/Get user word and target word/] --> B{"for index_value in range(len(user_word))"}
+    B --> C{"Is user_word[index_value] == \ntarget_word[index_value]"}
+    C --> |True| D["result[index_value] = 2"] --> Z
+    C --> |False| E{"is user_word[index_value] <br/> in target_word?"}
+    E --> |True| F["result[index_value] = 1"] --> Z
+    E --> |False| G["result[index_value] = 0"] --> Z
+    Z{"end of loop?"} --> |False| B
+    Z --> |True| Y[/"print(result)"/] --> X
+    X[End]
 ```
 
